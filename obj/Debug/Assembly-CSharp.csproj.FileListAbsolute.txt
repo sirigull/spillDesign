@@ -1,0 +1,2 @@
+/Users/Siri/Documents/Industriell Design/Høst -18/Spilldesign/CutegirlMoves/obj/Debug/Assembly-CSharp.csprojAssemblyReference.cache
+/Users/Siri/Documents/Industriell Design/Høst -18/Spilldesign/CutegirlMoves/obj/Debug/Assembly-CSharp.csproj.CoreCompileInputs.cache
