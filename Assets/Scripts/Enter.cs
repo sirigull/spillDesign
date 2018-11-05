@@ -9,6 +9,10 @@ public class Enter : MonoBehaviour {
     public GameObject treeTrigger;
     public GameObject text;
     public GameObject TriggerMushroom;
+    public GameObject jumpTrigger;
+    public GameObject jumpText;
+    public GameObject airButton;
+    public GameObject airText;
 
     private bool activated;
     public bool grabbed;
@@ -36,9 +40,16 @@ public class Enter : MonoBehaviour {
 
     private void OnTriggerEnter2D()
     {
-        if(gameObject == TriggerMushroom){
+        Debug.Log("true");
+        if (gameObject == jumpTrigger)
+        {
+            Debug.Log("jumpText");
+            jumpText.SetActive(true);
+            Debug.Log("active");
+        }
+        if (gameObject == TriggerMushroom){
             text.SetActive(true);
-            activated = true;
+           
             abilities.grabAbility = true;
             Debug.Log("true");
 
@@ -47,15 +58,30 @@ public class Enter : MonoBehaviour {
 
             infoText.SetActive(true);
         }
+        if(gameObject == airButton){
+            activated = true;
+            Debug.Log("activated");
+            airText.SetActive(true);
+            Debug.Log("airbutton");
+
+        }
+
+
+       
     }
   
 
 
 
             private void OnTriggerExit2D(){
+        Debug.Log("False");
         activated = false;
+        jumpText.SetActive(false);
+
 
     }
+
+   
   
 
 }

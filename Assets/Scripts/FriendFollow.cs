@@ -9,9 +9,11 @@ public class FriendFollow : MonoBehaviour
 
     public Rigidbody2D playerRB;
     private Rigidbody2D selfRB;
-    private Animator birdAnimator;
-
+//    private Animator birdAnimator;
+    //not on top of each other
+    private Vector3 offset;
     private Transform target;
+    public Transform grabpoint;
 
 
     [SerializeField]
@@ -24,8 +26,8 @@ public class FriendFollow : MonoBehaviour
 
 
 
-    private Vector2 randomMove = new Vector2(0f, 0f);
-    private bool canMove = true;
+    //private Vector2 randomMove = new Vector2(0f, 0f);
+   // private bool canMove = true;ll
 
     // Use this for initialization
     void Start()
@@ -34,7 +36,7 @@ public class FriendFollow : MonoBehaviour
         playerRB = GameObject.FindGameObjectWithTag("Player").GetComponent<Rigidbody2D>();
         selfRB = GetComponent<Rigidbody2D>();
         currentState = BirdState.Idle;
-        birdAnimator = GetComponent<Animator>();
+        //birdAnimator = GetComponent<Animator>();
 
 
     }
@@ -43,27 +45,28 @@ public class FriendFollow : MonoBehaviour
     public void FixedUpdate()
     {
 
-        if (Vector2.Distance(transform.position, target.position) > stoppingDistance)
         {
 
 
-            transform.position = Vector2.MoveTowards(transform.position, target.position, speed * Time.deltaTime);
 
             switch (currentState)
             {
                 case BirdState.Idle:
+                    moveBirdNormal();
 
                     selfRB.gravityScale = 0;
 
                     break;
 
                 case BirdState.Flying:
+                    moveBirdcarrying();
                     selfRB.gravityScale = 0;
                     break;
 
-                    /*case BirdState.Action:
-                        myRigidBody.gravityScale = 1;*/
-
+                case BirdState.Carrying:
+                    moveBirdcarrying();
+                    selfRB.gravityScale = 1;
+                    break;
             }
 
 
@@ -97,15 +100,37 @@ public class FriendFollow : MonoBehaviour
         }
 
     }
-            public void EnterFlying() {
+    void moveBirdNormal (){
+        if (Vector2.Distance(transform.position, target.position) > stoppingDistance){
+            transform.position = Vector2.MoveTowards(transform.position, target.position, speed * Time.deltaTime);
 
-                currentState = BirdState.Flying;
+        }
 
-                    }
-        public void BackToIdle() {
+    }
+    void moveBirdcarrying(){
+        transform.position = Vector2.MoveTowards(transform.position, grabpoint.position + offset, speed * Time.deltaTime);
 
-             currentState = BirdState.Idle;
-         }
+    }
+
+
+
+    //Public Methods
+    public void EnterFlying()
+    {
+
+        currentState = BirdState.Flying;
+
+    }
+    public void BackToIdle()
+    {
+
+        currentState = BirdState.Idle;
+    }
+    public void StartCarrying()
+    {
+        offset = transform.position - target.position;
+        currentState = BirdState.Carrying;
+    }
 }
 
 

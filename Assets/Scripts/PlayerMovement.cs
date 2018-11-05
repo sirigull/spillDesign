@@ -6,8 +6,10 @@ using UnityEngine;
 public class PlayerMovement : MonoBehaviour {
     private Rigidbody2D myRigidBody;
     private Animator myAnimator;
-
+    public FriendFollow friendFollow; 
     public GameObject mushroom;
+    public Abilities abilities;
+
 
     [SerializeField]
     private float movementSpeed;
@@ -65,20 +67,21 @@ public class PlayerMovement : MonoBehaviour {
         switch(currentState){
             case Gstate.Idle:
                 HandleMovement(horizontal);
-                myRigidBody.gravityScale = 1;
-
+                myRigidBody.gravityScale = 2;
                 break;
             case Gstate.Running:
                 HandleMovement(horizontal);
-                myRigidBody.gravityScale = 1;
+                myRigidBody.gravityScale = 2;
                  break;
             case Gstate.Action:
-                myRigidBody.gravityScale = 1;
+                myRigidBody.gravityScale = 2;
 
                 break;
             case Gstate.Flying:
+                Debug.Log("HasCHangedState");
                 HandleFlying(horizontal, vertical);
                 myRigidBody.gravityScale = 0;
+                Debug.Log(myRigidBody.gravityScale);
                 break;
         }
 
@@ -123,13 +126,15 @@ public class PlayerMovement : MonoBehaviour {
     {
 
             currentState = Gstate.Flying;
+        friendFollow.StartCarrying();
+        Debug.Log("is flying");
 
 
     }
     public void BackToIdle(){
-
+        friendFollow.BackToIdle();
         currentState = Gstate.Idle;
-
+        Debug.Log("is Idle");
     }
 
 
@@ -190,7 +195,7 @@ public class PlayerMovement : MonoBehaviour {
 
     private void ResetValues(){
             jump = false;
-            attack = false;
+            attack = false;            
     }
 }
 
