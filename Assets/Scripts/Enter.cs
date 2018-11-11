@@ -4,8 +4,8 @@ using UnityEngine;
 
 public class Enter : MonoBehaviour {
 
-    public GameObject sign;
-    public GameObject mushroom;
+    public GameObject fog;
+    public GameObject bird;
     public GameObject treeTrigger;
     public GameObject text;
     public GameObject TriggerMushroom;
@@ -13,6 +13,7 @@ public class Enter : MonoBehaviour {
     public GameObject jumpText;
     public GameObject airButton;
     public GameObject airText;
+
 
     private bool activated;
     public bool grabbed;
@@ -23,18 +24,11 @@ public class Enter : MonoBehaviour {
     public GameObject infoText;
 
 
- 
-
-
-
     private void Update()
     {
         if(Input.GetKeyDown(KeyCode.E) && activated){
-            Destroy(sign);
+            Destroy(fog);
         }
-
-
-
     }
 
 
@@ -65,23 +59,11 @@ public class Enter : MonoBehaviour {
             Debug.Log("airbutton");
 
         }
-
-
-       
     }
-  
-
-
-
-            private void OnTriggerExit2D(){
+        private void OnTriggerExit2D(){
         Debug.Log("False");
         activated = false;
         jumpText.SetActive(false);
 
-
     }
-
-   
-  
-
 }

@@ -6,6 +6,7 @@ TagManager:
   tags:
   - grabbable
   - hinged
+  - Smog
   layers:
   - Default
   - TransparentFX

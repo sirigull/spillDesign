@@ -4,71 +4,51 @@ using UnityEngine;
 
 public class Abilities : MonoBehaviour
 {
-
-
     public PlayerMovement playerMovement;
-    public Abilities abilities;
-    public Enter enter;
+    //public Abilities abilities;
+    //public Enter enter;
 
     public bool grabAbility;
-    public bool canGrab;
-    public GameObject hinged;
+    //public bool canGrab;
+    //public GameObject hinged;
+
+    [SerializeField]
+    public float birdTimer;
 
     public enum Gstate { Idle, Running, Jumping, Flying, Action }
 
     public Gstate currentState;
-
-
-
-
 
     void Update()
     {
 
         if (Input.GetKeyDown(KeyCode.G) && grabAbility)
         {
-            if (canGrab && playerMovement.currentState != PlayerMovement.Gstate.Flying)
+            if (playerMovement.currentState != PlayerMovement.Gstate.Flying) //canGrab && 
             {
                 playerMovement.EnterFlying();
-                Debug.Log("has pressed G");
-              
-
+                Invoke("BirdTimer", birdTimer);
 
             }
             else
             {
-                Debug.Log("pressed G again");
                 playerMovement.BackToIdle();
 
             }
-
-
-
-
         }
 
-        if (currentState == Gstate.Flying)
-        {
-            hinged.SetActive(true);
-
-        }
+       
     }
 
-    void OnTriggerEnter2D(Collider2D other)
+    //void OnTriggerEnter2D(Collider2D other)
+    //{
+        //if (other.gameObject.name == "bird")
+            //canGrab = true;
+
+    //}
+
+    void BirdTimer()
     {
-        if (other.gameObject.name == "mushroom")
-            canGrab = true;
-
+        playerMovement.BackToIdle();
     }
-
-
-
-
-
-
-
-
-
-
 }
-

@@ -45,6 +45,7 @@ public class PlayerMovement : MonoBehaviour {
         myRigidBody = GetComponent<Rigidbody2D>();
         myAnimator = GetComponent<Animator>();
         currentState = Gstate.Idle;
+
     }
     void Update(){
         HandleInput();
@@ -64,21 +65,16 @@ public class PlayerMovement : MonoBehaviour {
         switch(currentState){
             case Gstate.Idle:
                 HandleMovement(horizontal);
-                myRigidBody.gravityScale = 2;
+                myRigidBody.gravityScale = 5;
                 break;
             case Gstate.Running:
                 HandleMovement(horizontal);
-                myRigidBody.gravityScale = 2;
+                myRigidBody.gravityScale = 5;
                  break;
             case Gstate.Action:
-                myRigidBody.gravityScale = 2;
-                break;
+                myRigidBody.gravityScale = 5;
 
-            case Gstate.Jumping:
-                HandleMovement(horizontal);
-                myRigidBody.gravityScale = 2;
                 break;
-
             case Gstate.Flying:
                 HandleFlying(horizontal, vertical);
                 myRigidBody.gravityScale = 0;
@@ -89,14 +85,14 @@ public class PlayerMovement : MonoBehaviour {
     
     }
     private void HandleMovement(float horizontal){
-    /*    if(!this.myAnimator.GetCurrentStateAnimatorStateInfo(0).isTag("Attack")){
+        /*    if(!this.myAnimator.GetCurrentStateAnimatorStateInfo(0).isTag("Attack")){
 
-        }*/
+            }*/
 
         if (isGrounded && jump){
             isGrounded = false;
             myRigidBody.AddForce(new Vector2(0, jumpForce));
-            secondJumpAvail = true; 
+            secondJumpAvail = true;
         }
         else {
             if(isGrounded && jump){
@@ -110,18 +106,26 @@ public class PlayerMovement : MonoBehaviour {
 
         if(isGrounded || airControl){
         myRigidBody.velocity = new Vector2(horizontal * movementSpeed,myRigidBody.velocity.y); //x = -1, y = 0
+            myAnimator.SetFloat("speed", Mathf.Abs(horizontal));
         }
-        myAnimator.SetFloat("speed", Mathf.Abs(horizontal));
+
+        myAnimator.SetBool("flying", false);
     }
 
     public void EnterFlying()
     {
 
-            currentState = Gstate.Flying;
+        currentState = Gstate.Flying;
         friendFollow.StartCarrying();
+        Invoke("DelayedFunction", 3.0f);
         Debug.Log("is flying");
 
 
+    }
+    public void DelayedFunction()
+    {
+        currentState = Gstate.Idle;
+        friendFollow.BackToIdle();
     }
     public void BackToIdle(){
         friendFollow.BackToIdle();
@@ -134,7 +138,7 @@ public class PlayerMovement : MonoBehaviour {
         myRigidBody.velocity = new Vector2(horizontal * movementSpeed,vertical * movementSpeed); //x = -1, y = 0
 
     
-         myAnimator.SetFloat("speed", Mathf.Abs(horizontal));
+         myAnimator.SetBool("flying", true);
         
     }
 
@@ -147,13 +151,19 @@ public class PlayerMovement : MonoBehaviour {
     private void HandleInput(){
         if (Input.GetKeyDown(KeyCode.Space)){
             jump = true;
+            myAnimator.SetBool("jumping", true);
         }
 
 
         if (Input.GetKeyDown(KeyCode.LeftShift)){
             attack = true;
         }
-        
+
+        if (Input.GetKeyDown(KeyCode.E))
+        {
+            myAnimator.SetBool("pressing", true);
+        }
+
     }
 
     private void Flip(float horizontal){
@@ -185,6 +195,8 @@ public class PlayerMovement : MonoBehaviour {
 
     private void ResetValues(){
             jump = false;
-            attack = false;            
+            attack = false;
+            myAnimator.SetBool("jumping", false);
+        myAnimator.SetBool("pressing", false);
     }
 }
