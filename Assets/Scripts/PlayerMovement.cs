@@ -38,9 +38,6 @@ public class PlayerMovement : MonoBehaviour {
 
     public Gstate currentState;
 
-    
-
-
     // Use this for initialization
     void Start () {
         facingRight = true;
@@ -75,13 +72,16 @@ public class PlayerMovement : MonoBehaviour {
                  break;
             case Gstate.Action:
                 myRigidBody.gravityScale = 2;
-
                 break;
+
+            case Gstate.Jumping:
+                HandleMovement(horizontal);
+                myRigidBody.gravityScale = 2;
+                break;
+
             case Gstate.Flying:
-                Debug.Log("HasCHangedState");
                 HandleFlying(horizontal, vertical);
                 myRigidBody.gravityScale = 0;
-                Debug.Log(myRigidBody.gravityScale);
                 break;
         }
 
@@ -104,9 +104,7 @@ public class PlayerMovement : MonoBehaviour {
                 if(secondJumpAvail){
                     myRigidBody.AddForce(new Vector2(0, jumpForce));
                     secondJumpAvail = false;
-
                 }
-
             }
         }
 
@@ -114,13 +112,7 @@ public class PlayerMovement : MonoBehaviour {
         myRigidBody.velocity = new Vector2(horizontal * movementSpeed,myRigidBody.velocity.y); //x = -1, y = 0
         }
         myAnimator.SetFloat("speed", Mathf.Abs(horizontal));
-        
-        
-        
     }
-
-
- 
 
     public void EnterFlying()
     {
@@ -137,8 +129,6 @@ public class PlayerMovement : MonoBehaviour {
         Debug.Log("is Idle");
     }
 
-
-
     private void HandleFlying(float horizontal, float vertical){
 
         myRigidBody.velocity = new Vector2(horizontal * movementSpeed,vertical * movementSpeed); //x = -1, y = 0
@@ -153,6 +143,7 @@ public class PlayerMovement : MonoBehaviour {
             myAnimator.SetTrigger("attack");
         }
     }
+
     private void HandleInput(){
         if (Input.GetKeyDown(KeyCode.Space)){
             jump = true;
@@ -188,7 +179,6 @@ public class PlayerMovement : MonoBehaviour {
                 }
             }
         }
-            
         }
         return false;
     }
@@ -198,4 +188,3 @@ public class PlayerMovement : MonoBehaviour {
             attack = false;            
     }
 }
-
