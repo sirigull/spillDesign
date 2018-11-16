@@ -7,6 +7,7 @@ TagManager:
   - grabbable
   - hinged
   - Smog
+  - platform
   layers:
   - Default
   - TransparentFX
