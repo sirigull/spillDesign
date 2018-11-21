@@ -17,7 +17,9 @@ public class Respawn : MonoBehaviour {
 
    public void Respewn(){
         Debug.Log("respewn");
+        player.GetComponent<Rigidbody2D>().velocity = new Vector3(0, 0, 0);
         player.transform.position = respawnPoint.position;
+        
 
     }
 

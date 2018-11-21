@@ -5,6 +5,7 @@ using UnityEngine;
 public class Abilities : MonoBehaviour
 {
     public PlayerMovement playerMovement;
+    public BirdGlow birdGlow;
     //public Abilities abilities;
     //public Enter enter;
 
@@ -28,7 +29,7 @@ public class Abilities : MonoBehaviour
             {
                 playerMovement.EnterFlying();
                 Invoke("BirdTimer", birdTimer);
-
+                birdGlow.birdSmaller(0.5f);
             }
             else
             {
@@ -50,5 +51,9 @@ public class Abilities : MonoBehaviour
     void BirdTimer()
     {
         playerMovement.BackToIdle();
+        if (grabAbility)
+        {
+            birdGlow.birdBigger();
+        }
     }
 }

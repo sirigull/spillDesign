@@ -38,7 +38,7 @@ public class SickBird : MonoBehaviour {
             abilities.grabAbility = false;
             //smallGlow1.SetActive(true);
             //bigGlow2.SetActive(false);
-            birdGlow.birdSmaller();
+            birdGlow.birdSmaller(1);
             playerMovement.BackToIdle();
 
             Debug.Log("Grbbillt false");

@@ -12,12 +12,14 @@ public class BirdGlow : MonoBehaviour {
 	
 	public void birdBigger()
     {
+        myAnimator.speed = 1.0f;
         myAnimator.SetBool("smaller", false);
         myAnimator.SetBool("bigger", true);
     }
 
-    public void birdSmaller()
+    public void birdSmaller(float speed)
     {
+        myAnimator.speed = speed;
         myAnimator.SetBool("bigger", false);
         myAnimator.SetBool("smaller", true);
     }
