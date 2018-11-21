@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class SmogTrigger : MonoBehaviour
 {
- 
+    public SoundManager soundManager;
     public GameObject triggerObject;
 
     public SmogMover smogMover;
@@ -18,6 +18,7 @@ public class SmogTrigger : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.E) && activated)
         {
             smogMover.MoveSmog();
+            soundManager.playMachineSound();
             Destroy(this);
         }
     }

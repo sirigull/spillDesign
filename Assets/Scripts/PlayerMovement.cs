@@ -9,6 +9,7 @@ public class PlayerMovement : MonoBehaviour {
     public FriendFollow friendFollow; 
     public GameObject mushroom;
     public Abilities abilities;
+    public SoundManager soundManager;
 
 
     [SerializeField]
@@ -92,7 +93,7 @@ public class PlayerMovement : MonoBehaviour {
         if (isGrounded && jump){
             isGrounded = false;
             myRigidBody.AddForce(new Vector2(0, jumpForce));
-            secondJumpAvail = true;
+           
         }
         else {
             if(isGrounded && jump){
@@ -117,16 +118,17 @@ public class PlayerMovement : MonoBehaviour {
 
         currentState = Gstate.Flying;
         friendFollow.StartCarrying();
-        Invoke("DelayedFunction", 3.0f);
-        Debug.Log("is flying");
+        soundManager.playBirdSound();
+        //Invoke("DelayedFunction", 3.0f);
+        //Debug.Log("is flying");
 
 
     }
-    public void DelayedFunction()
-    {
-        currentState = Gstate.Idle;
-        friendFollow.BackToIdle();
-    }
+    //public void DelayedFunction()
+    //{
+        //currentState = Gstate.Idle;
+        //friendFollow.BackToIdle();
+    //}
     public void BackToIdle(){
         friendFollow.BackToIdle();
         currentState = Gstate.Idle;
@@ -185,7 +187,9 @@ public class PlayerMovement : MonoBehaviour {
                 Collider2D[] colliders = Physics2D.OverlapCircleAll(point.position,groundRadius,whatIsGround);
             for (int i = 0; i< colliders.Length; i++){
                 if(colliders[i].gameObject != gameObject){
-                    return true;
+                        Debug.Log("isgrounded true");
+
+                        return true;
                 }
             }
         }

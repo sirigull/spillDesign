@@ -2,34 +2,36 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class SoundManager : MonoBehaviour {
+public class SoundManager : MonoBehaviour
+{
+    public AudioClip birdSound;
+    public AudioClip buttonSound;
+    public AudioClip machineSound;
 
-	public static SoundManager Instance = null;
+    public AudioSource source;
 
-	// Sound Clips for BirdLife
+    void Awake()
+    {
+        source = GetComponent<AudioSource>();
+    }
 
-	private AudioSource soundEffectAudio;
+    //plays birdSound if the Audio Player isn't busy
+    public void playBirdSound()
+    {
+        if (!source.isPlaying)
+        {
+            source.PlayOneShot(birdSound);
+        }
+    }
 
-	// Use this for initialization
-	void Start () {
-		if (Instance == null){
+    public void playMachineSound()
+    {
+           source.PlayOneShot(buttonSound);
+           source.PlayOneShot(machineSound);
+    }
 
-			Instance = this;
-		}
-		else if(Instance!= this){
-			Destroy(gameObject);
-		}
-		AudioSource theSource = GetComponent<AudioSource>();
-		soundEffectAudio = theSource;
-	}
-	
-
-	public void PlayOneShot(AudioClip clip){
-
-		soundEffectAudio.PlayOneShot(clip);
-	}
-	// Update is called once per frame
-	void Update () {
-		
-	}
+    public void stopBirdSound()
+    {
+            source.Stop();
+    }
 }

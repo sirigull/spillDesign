@@ -5,7 +5,9 @@ using UnityEngine;
 public class FriendFollow : MonoBehaviour
 {
     [SerializeField]
-    public float speed;
+    public float walkingSpeed;
+    [SerializeField]
+    public float flyingSpeed;
 
     public Rigidbody2D playerRB;
     private Rigidbody2D selfRB;
@@ -68,7 +70,7 @@ public class FriendFollow : MonoBehaviour
     void moveBirdNormal (){
         stoppingDistance = 7;
         if (Vector2.Distance(transform.position, target.position) > stoppingDistance){
-            transform.position = Vector2.MoveTowards(transform.position, target.position, speed * Time.deltaTime);
+            transform.position = Vector2.MoveTowards(transform.position, target.position, walkingSpeed * Time.deltaTime);
 
         }
 
@@ -76,7 +78,7 @@ public class FriendFollow : MonoBehaviour
     void moveBirdcarrying(){
         Debug.Log("moving towards point");
         stoppingDistance = 0;
-        transform.position = Vector2.MoveTowards(transform.position, grabpoint.position, speed * Time.deltaTime);
+        transform.position = Vector2.MoveTowards(transform.position, grabpoint.position, flyingSpeed * Time.deltaTime);
 
     }
 

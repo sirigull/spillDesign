@@ -6,6 +6,8 @@ public class SmogMover : MonoBehaviour {
 
     public Abilities abilities;
     public Transform[] movePoints;
+    public BirdGlow birdGlow;
+
     public int currentPointPosition;
     public SickBird sickBird;
 
@@ -36,5 +38,6 @@ public class SmogMover : MonoBehaviour {
         sickBird.bigGlow2.SetActive(true);
         sickBird.smallGlow1.SetActive(false);
         Debug.Log("grabability true");
+        birdGlow.birdBigger();
     }
 }

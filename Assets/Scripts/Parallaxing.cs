@@ -12,6 +12,7 @@ public class Parallaxing : MonoBehaviour {
     private Transform cam;              //reference to the main cameras transform
     private Vector3 previousCamPos;     //The position of the camera in the previous frame
 
+
     //Is called before Start()
     void Awake()
     {

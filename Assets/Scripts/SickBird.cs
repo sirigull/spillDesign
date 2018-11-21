@@ -4,8 +4,10 @@ using UnityEngine;
 
 public class SickBird : MonoBehaviour {
 
+    public SoundManager soundManager;
+    public PlayerMovement playerMovement;
+    public BirdGlow birdGlow;
 
- 
     public Abilities abilities;
     public GameObject smallGlow1;
     public GameObject bigGlow2;
@@ -20,8 +22,9 @@ public class SickBird : MonoBehaviour {
         abilities = GameObject.FindGameObjectWithTag("Player").GetComponent<Abilities>();
         abilities.grabAbility = true;
         bigGlow2.SetActive(true);
-        smallGlow1.SetActive(false);
+        //smallGlow1.SetActive(false);
         Debug.Log("grabability true");
+        //birdGlow.birdBigger();
     }
 
 
@@ -33,10 +36,13 @@ public class SickBird : MonoBehaviour {
         {
             Debug.Log("collide smog true");
             abilities.grabAbility = false;
-            smallGlow1.SetActive(true);
-            bigGlow2.SetActive(false);
+            //smallGlow1.SetActive(true);
+            //bigGlow2.SetActive(false);
+            birdGlow.birdSmaller();
+            playerMovement.BackToIdle();
 
             Debug.Log("Grbbillt false");
+            soundManager.stopBirdSound();
         }
 
       /* else
@@ -54,7 +60,3 @@ public class SickBird : MonoBehaviour {
 
     }*/
 }
-
-
-
-

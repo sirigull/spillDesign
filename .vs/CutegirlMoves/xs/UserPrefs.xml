@@ -1,17 +1,20 @@
 ﻿<Properties StartupConfiguration="{EDCFFD4C-7B40-E64B-35BD-4496DE4BB778}|">
   <MonoDevelop.Ide.ItemProperties.Assembly-CSharp PreferredExecutionTarget="Unity.Editor" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Assets/Scripts/PlayerMovement.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets/Scripts/NewBehaviourScript.cs">
     <Files>
-      <File FileName="Assets/Scripts/PlayerMovement.cs" Line="152" Column="9" />
-      <File FileName="Assets/Scripts/Abilities.cs" Line="19" Column="1" />
-      <File FileName="Assets/Scripts/FriendFollow.cs" Line="63" Column="14" />
-      <File FileName="Assets/Scripts/SickBird.cs" Line="16" Column="6" />
-      <File FileName="Assets/Scripts/EnableFlight.cs" Line="22" Column="10" />
+      <File FileName="Assets/Scripts/PlayerMovement.cs" Line="1" Column="1" />
+      <File FileName="Assets/Scripts/Abilities.cs" Line="38" Column="10" />
+      <File FileName="Assets/Scripts/FriendFollow.cs" Line="69" Column="6" />
+      <File FileName="Assets/Scripts/SickBird.cs" Line="1" Column="1" />
       <File FileName="Assets/Scripts/TextTrigger.cs" Line="14" Column="36" />
-      <File FileName="Assets/Scripts/SmogTrigger.cs" Line="18" Column="54" />
-      <File FileName="Assets/Scripts/SmogMover.cs" Line="18" Column="10" />
+      <File FileName="Assets/Scripts/SmogTrigger.cs" Line="21" Column="1" />
+      <File FileName="Assets/Scripts/SmogMover.cs" Line="29" Column="5" />
       <File FileName="Assets/Animation/RingAnimator.cs" Line="15" Column="3" />
-      <File FileName="Assets/Scripts/PlatformMovement.cs" Line="37" Column="9" />
+      <File FileName="Assets/Scripts/PlatformMovement.cs" Line="27" Column="36" />
+      <File FileName="Assets/MainMenu.cs" Line="18" Column="1" />
+      <File FileName="Assets/Scripts/Respawn.cs" Line="21" Column="9" />
+      <File FileName="Assets/Scripts/SpawnTrigger.cs" Line="11" Column="26" />
+      <File FileName="Assets/Scripts/NewBehaviourScript.cs" Line="1" Column="1" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
