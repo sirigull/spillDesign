@@ -35,8 +35,8 @@ public class SmogMover : MonoBehaviour {
         transform.position = movePoints[currentPointPosition].position;
         currentPointPosition++;
         abilities.grabAbility = true;
-        sickBird.bigGlow2.SetActive(true);
-        sickBird.smallGlow1.SetActive(false);
+        //sickBird.bigGlow2.SetActive(true);
+        //sickBird.smallGlow1.SetActive(false);
         Debug.Log("grabability true");
         birdGlow.birdBigger();
     }

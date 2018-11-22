@@ -23,4 +23,9 @@ public class BirdGlow : MonoBehaviour {
         myAnimator.SetBool("bigger", false);
         myAnimator.SetBool("smaller", true);
     }
+
+    public void release()
+    {
+        myAnimator.SetBool("release", true);
+    }
 }

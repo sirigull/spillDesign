@@ -9,9 +9,11 @@ public class SickBird : MonoBehaviour {
     public BirdGlow birdGlow;
 
     public Abilities abilities;
-    public GameObject smallGlow1;
-    public GameObject bigGlow2;
-
+    //public GameObject smallGlow1;
+    //public GameObject bigGlow2;
+    [SerializeField]
+    public float soundSpeed;
+   
     private void Update()
     {
 
@@ -21,7 +23,8 @@ public class SickBird : MonoBehaviour {
     {
         abilities = GameObject.FindGameObjectWithTag("Player").GetComponent<Abilities>();
         abilities.grabAbility = true;
-        bigGlow2.SetActive(true);
+        //soundManager.playBirdSound();
+        //bigGlow2.SetActive(true);
         //smallGlow1.SetActive(false);
         Debug.Log("grabability true");
         //birdGlow.birdBigger();
@@ -38,25 +41,29 @@ public class SickBird : MonoBehaviour {
             abilities.grabAbility = false;
             //smallGlow1.SetActive(true);
             //bigGlow2.SetActive(false);
-            birdGlow.birdSmaller(1);
+            birdGlow.birdSmaller(1.0f);
             playerMovement.BackToIdle();
 
             Debug.Log("Grbbillt false");
+            //soundManager.StartCoroutine("fadeOut");
+            Debug.Log("fadeout");
             soundManager.stopBirdSound();
         }
 
-      /* else
-        {
-            abilities.grabAbility = true;
-            Debug.Log("grabbilly true");
-            }*/
+      //else
+        //{
+            //abilities.grabAbility = true;
+            //Debug.Log("grabbilly true");
+            //birdGlow.birdBigger();
+        //}
     }
 
-    /*private void OnTriggerExit(Collider other)
+    private void OnTriggerExit2D(Collider2D other)
     {
         if(other.tag == "Player"){
             abilities.grabAbility = true;
+            birdGlow.birdBigger();
         }
 
-    }*/
+    }
 }

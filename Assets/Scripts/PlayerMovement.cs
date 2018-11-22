@@ -108,6 +108,7 @@ public class PlayerMovement : MonoBehaviour {
         if(isGrounded || airControl){
         myRigidBody.velocity = new Vector2(horizontal * movementSpeed,myRigidBody.velocity.y); //x = -1, y = 0
             myAnimator.SetFloat("speed", Mathf.Abs(horizontal));
+            myAnimator.SetFloat("verticalspeed", Mathf.Abs(myRigidBody.velocity.y));
         }
 
         myAnimator.SetBool("flying", false);

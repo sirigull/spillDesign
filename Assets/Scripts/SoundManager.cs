@@ -7,7 +7,7 @@ public class SoundManager : MonoBehaviour
     public AudioClip birdSound;
     public AudioClip buttonSound;
     public AudioClip machineSound;
-
+    //public bool keepFadingOut;
     public AudioSource source;
 
     void Awake()
@@ -26,12 +26,36 @@ public class SoundManager : MonoBehaviour
 
     public void playMachineSound()
     {
-           source.PlayOneShot(buttonSound);
+            source.PlayOneShot(buttonSound);
            source.PlayOneShot(machineSound);
     }
 
     public void stopBirdSound()
     {
-            source.Stop();
+        if(source.isPlaying)
+        StartCoroutine("FadeOut");
+    }
+
+  /*public void FadeOutCaller(float speed){
+        Debug.Log("coroutine");
+        StartCoroutine(FadeOut(speed));
+    }*/
+
+   IEnumerator FadeOut(){
+        Debug.Log("fadeout");
+      
+        while(source.volume > 0.01f){
+             source.volume -= Time.deltaTime / 15.0F;
+             yield return null;
+
+        }
+        source.volume = 0;
+        StartCoroutine(ResetVolume());
+        source.Stop();
+    }
+
+    IEnumerator ResetVolume(){
+        yield return new WaitForSeconds(1f);
+        source.volume = 0.2f;
     }
 }
